@@ -3,25 +3,49 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary: #000000;
+  --primary-2: #111;
+  --secondary: #fcf3e6;
+  --secondary-2: #f7dfba;
+  --hover: rgba(255, 255, 255, 0.075);
+  --hover-1: rgba(255, 255, 255, 0.15);
+  --hover-2: rgba(255, 255, 255, 0.25);
+  --selection: var(--primary);
+
+  --text-base: black;
+  --text-primary: black;
+  --text-secondary: black;
+
+  --accents-0: #212529;
+  --accents-1: #343a40;
+  --accents-2: #495057;
+  --accents-3: #868e96;
+  --accents-4: #adb5bd;
+  --accents-5: #ced4da;
+  --accents-6: #dee2e6;
+  --accents-7: #e9ecef;
+  --accents-8: #f1f3f5;
+  --accents-9: #f8f9fa;
+
+  --cyan: #22b8cf;
+  --green: #6bbdb6;
+  --red: #ed5f65;
+  --pink: #ea727a;
+  --yellow-light: #fcf3e6;
+  --yellow-: #f7dfba;
+  --yellow-dark: #edb968;
+  --blue: #0070f3;
+  --purple-light: #e5e2ed;
+  --purple: #a1a2e6;
+  --purple-dark: #3a3078;
+
+  --font-sans: -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue",
+    "Helvetica", sans-serif;
+
+  --header-height: 80px;
+  --vh100-offset: calc(100vh - var(--header-height));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+*:focus {
+  @apply outline-none ring-2 ring-yellow-500 ring-opacity-50;
 }
