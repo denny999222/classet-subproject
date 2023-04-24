@@ -15,10 +15,7 @@ export default function Navbar({}) {
       aria-label="Site Nav"
       className="mx-auto flex max-w-6xl items-center justify-between p-4 "
     >
-      <a
-        href="/"
-        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border-2"
-      >
+      <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border-2">
         <span className="sr-only">Logo</span>
         <div className="avatar">
           <div className="w-10">
@@ -28,7 +25,7 @@ export default function Navbar({}) {
             />
           </div>
         </div>
-      </a>
+      </div>
       {session ? (
         <button
           onClick={logout}
