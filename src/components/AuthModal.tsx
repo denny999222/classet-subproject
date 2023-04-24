@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { supabase_public } from "@/utils/supabase-public";
 
 // FUNCTIONS
-import { isValidEmail } from "@/functions/helper";
+import { isValidEmail, getApiUrl } from "@/functions/helper";
 
 const AuthModal = () => {
   const [email, setEmail] = React.useState<string>("");
@@ -19,7 +19,7 @@ const AuthModal = () => {
     const { data, error } = await supabase_public.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: "http://localhost:3000/",
+        emailRedirectTo: getApiUrl().replace("/api", ""),
       },
     });
     if (error) setError(error.message);
