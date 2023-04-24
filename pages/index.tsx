@@ -32,7 +32,9 @@ export default function Home({ questions, careers }: HomeProps) {
 
   const onNext = async () => {
     const data = (
-      await axios.get(`${getApiUrl()}/questions?page=${page}&size=5`)
+      await axios.get(
+        `https://classet-subproject-g8i3.vercel.app/api/questions?page=${page}&size=5`
+      )
     ).data;
     setAllQuestions([...allQuestions, ...data.questions]);
     if (data.questions.length != 0) setPage(page + 1);
@@ -40,7 +42,7 @@ export default function Home({ questions, careers }: HomeProps) {
 
   const onAnswer = async (value: number, question_id: number) => {
     axios
-      .post(`${getApiUrl()}/user_answers`, {
+      .post(`https://classet-subproject-g8i3.vercel.app/api/user_answers`, {
         question_id,
         answer: value,
       })
@@ -54,7 +56,7 @@ export default function Home({ questions, careers }: HomeProps) {
 
   const onGetResults = async () => {
     axios
-      .get(`${getApiUrl()}/quiz_results`)
+      .get(`https://classet-subproject-g8i3.vercel.app/api/quiz_results`)
       .then((res) => {
         setFinishedQuiz(true);
         setTopCareers(res.data.top_careers);
@@ -120,7 +122,7 @@ export default function Home({ questions, careers }: HomeProps) {
 export async function getServerSideProps() {
   const data_questions = (
     await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/questions?page=1&size=5`
+      `https://classet-subproject-g8i3.vercel.app/api/questions?page=1&size=5`
     )
   ).data;
 
