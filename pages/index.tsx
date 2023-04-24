@@ -14,6 +14,8 @@ import QuestionSection from "@/components/TradeSkillQuiz/QuestionSection";
 import HeaderSection from "@/components/TradeSkillQuiz/HeaderSection";
 import QuizResults from "@/components/TradeSkillQuiz/QuizResults";
 
+import { getApiUrl } from "@/functions/helper";
+
 interface HomeProps {
   questions: Question_Type[];
   careers: Career_Type[];
@@ -30,9 +32,7 @@ export default function Home({ questions, careers }: HomeProps) {
 
   const onNext = async () => {
     const data = (
-      await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/questions?page=${page}&size=5`
-      )
+      await axios.get(`${getApiUrl()}/questions?page=${page}&size=5`)
     ).data;
     setAllQuestions([...allQuestions, ...data.questions]);
     if (data.questions.length != 0) setPage(page + 1);
@@ -40,7 +40,7 @@ export default function Home({ questions, careers }: HomeProps) {
 
   const onAnswer = async (value: number, question_id: number) => {
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/user_answers`, {
+      .post(`${getApiUrl()}/user_answers`, {
         question_id,
         answer: value,
       })
@@ -53,9 +53,8 @@ export default function Home({ questions, careers }: HomeProps) {
   };
 
   const onGetResults = async () => {
-    console.log("onGetResults");
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/quiz_results`)
+      .get(`${getApiUrl()}/quiz_results`)
       .then((res) => {
         setFinishedQuiz(true);
         setTopCareers(res.data.top_careers);
@@ -64,8 +63,6 @@ export default function Home({ questions, careers }: HomeProps) {
         console.error(err.response.data);
       });
   };
-
-  console.log(Object.keys(totalAnswered).length, allQuestions.length);
 
   return (
     <div className="w-full text-center">
