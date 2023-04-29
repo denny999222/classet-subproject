@@ -19,4 +19,5 @@ export default async function handler(
   console.log(req.body);
   console.log(req.query);
   console.log(req.headers);
+  res.status(200).json({ message: "ok tstinggg" });
 }
